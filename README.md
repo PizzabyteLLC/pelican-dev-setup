@@ -1,6 +1,6 @@
 # Pelican Development Environment Setup
 
-Pelican development setup script
+Pelican development setup instructions.
 
 ## Prerequisites
 
