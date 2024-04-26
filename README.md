@@ -5,6 +5,8 @@ Pelican development setup instructions.
 ## Prerequisites
 
 * Ubuntu Linux (preferably latest LTS of 22.04)
+  * Any Linux OS will work, and even macOS with installing dependencies from `brew`
+  * If running on Windows, use a Linux VM or WSL to perform the dev environment setup
 * Docker
 
 ## Pelican Panel
@@ -25,9 +27,9 @@ Once PHP is installed, install Composer.
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-### Installing NodeJS 20 (or higher) and `yarn`
+### Installing Node.js 20 (or higher) and `yarn`
 
-Pelican requires NodeJS 20 at a minimum to operate. To install, use the following PPA to get an updated version of NodeJS due to the Ubuntu repositories not having updated NodeJS.
+Pelican requires Node.js 20 at a minimum to operate. To install, use the following PPA to get an updated version of Node.js due to the Ubuntu repositories not having updated Node.js.
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -50,14 +52,14 @@ git clone https://github.com/pelican-dev/panel.git
 
 ### Install Sail
 
-Sail is a quick way to spin up a PHP/Laravel/NPM project on the fly in a Docker container, to install in the repository:
+Sail is a quick way to spin up a PHP/Laravel/NPM project on the fly in a Docker container, install Sail while using Composer.
 
 ```bash
 composer install --ignore-platform-reqs
 composer require laravel/sail --dev
 ```
 
-To completely install Sail, run:
+To setup Sail with Artisan, run the Sail installer. This will build out Docker infrastructure on your device.
 
 ```bash
 php artisan sail:install
@@ -69,7 +71,7 @@ php artisan sail:install
 
 It will prompt what services you want to install, just select MySQL as that is what currently will be the quickest to setup without hassle.
 
-To start Sail, run:
+To start Sail, the startup command.
 
 ```bash
 ./vendor/bin/sail up -d
@@ -80,6 +82,17 @@ To start Sail, run:
 > Make sure you do not have nginx/MySQL/MariaDB running or any other services taking up ports `80` or `3306`, disable them with `systemctl` or completely uninstall them. Otherwise the Sail instance will not start.
 
 This starts Sail in a daemon mode, where it will not force output of the Docker containers.
+
+If you want to have the output of Sail in your terminal, remove the `-d` in your command.
+
+If you want to launch a shell inside the Pelican container while in daemon mode, you can enter either shell mode or root shell mode.
+
+```bash
+# For regular shell access
+./vendor/bin/sail shell
+# For root shell access
+./vendor/bin/sail root-shell
+```
 
 > [!TIP]
 >
@@ -100,7 +113,7 @@ To start the application, either:
 
 ### Setup your Pelican environment
 
-To setup Pelican with Sail, run:
+To setup Pelican eggs, you need to migrate them with Artisan.
 
 ```bash
 sail artisan migrate
@@ -108,33 +121,33 @@ sail artisan migrate
 
 This will prompt if you want to run the command while in production. Select "yes" to continue.
 
-To run through the final setups of setup, run:
+To run through the final setups of setup, perform your setup process normally.
 
 ```bash
 sail artisan p:environment:setup
 sail artisan p:environment:database
 ```
 
-To create a user, run:
+To create a user, the Artisan command through Sail.
 
 ```bash
 sail p:user:make
 ```
 
-Shutdown Sail for the time being by running:
+Shutdown Sail for preparation to building out Node.js assets.
 
 ```bash
 sail down
 ```
 
-To build the NodeJS aspects of the project, run:
+To build the Node.js aspects of the project, install the dependencies with `yarn` and build the application.
 
 ```bash
 yarn install --frozen-lockfile
 yarn build:production
 ```
 
-Start up Sail again either in a daemon mode or regularly with:
+Start up Sail again either in a daemon mode or with direct output.
 
 ```bash
 sail up
