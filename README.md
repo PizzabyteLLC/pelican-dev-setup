@@ -2,12 +2,26 @@
 
 Pelican development setup instructions.
 
+> [!WARNING]
+>
+> This is not intended for a production environment. This is purely for developing on the Pelican panel and associated projects.
+
 ## Prerequisites
 
 * Ubuntu Linux (preferably latest LTS of 22.04)
   * Any Linux OS will work, and even macOS with installing dependencies from `brew`
   * If running on Windows, use a Linux VM or WSL to perform the dev environment setup
 * Docker
+
+> [!NOTE]
+>
+> Make sure your user is in the `docker` group on Linux. This is required for setting up [Laravel Sail](https://laravel.com/docs/11.x/sail) as our development environment.
+>
+> To create and set your user in the `docker` group. Create the group with `sudo groupadd docker` and add your user to it with `sudo usermod -aG docker $USER`. Log out and back in again to have the changes take effect.
+
+> [!CAUTION]
+>
+> Do not run the Pelican environment as `root`. This will not only not work, but it will also cause permission errors for getting services with Docker properly communicating. Please run it as your nomral user or a service user. This is also best practice as running anything as `root` is a security risk.
 
 ## Pelican Panel
 
