@@ -18,7 +18,7 @@ Run the following in your terminal to install a PPA for updated PHP, as the curr
 ```bash
 LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
-sudo apt-get install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip,intl} tar unzipgit -y
+sudo apt-get install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip,intl} tar unzip git -y
 ```
 
 Once PHP is installed, install Composer.
