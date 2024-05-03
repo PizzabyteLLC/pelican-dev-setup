@@ -131,7 +131,7 @@ sail artisan p:environment:database
 To create a user, the Artisan command through Sail.
 
 ```bash
-sail p:user:make
+sail artisan p:user:make
 ```
 
 Shutdown Sail for preparation to building out Node.js assets.
