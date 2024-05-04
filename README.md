@@ -21,7 +21,7 @@ Pelican development setup instructions.
 
 > [!CAUTION]
 >
-> Do not run the Pelican environment as `root`. This will not only not work, but it will also cause permission errors for getting services with Docker properly communicating. Please run it as your nomral user or a service user. This is also best practice as running anything as `root` is a security risk.
+> Do not run the Pelican environment as `root`. This will not only not work, but it will also cause permission errors for getting services with Docker properly communicating. Please run it as your normal user or a service user. This is also best practice as running anything as `root` is a security risk.
 
 ## Pelican Panel
 
